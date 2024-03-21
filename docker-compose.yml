@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/prometheus_data:/prometheus
+      # - ./prometheus/prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -53,20 +53,22 @@ services:
       - '9100:9100'
 
   cadvisor:
-    image: google/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: monitoring_cadvisor
     restart: unless-stopped
     privileged: true
+    devices:
+      - '/dev/kmsg'
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:rw
+      - /var/run:/var/run:ro
       - /sys:/sys:ro
 #      - /mnt/windows_sys/:/host/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
 #      - /mnt/windows_docker/:/var/lib/docker:ro
       - /dev/disk:/dev/disk/:ro
 #      - /mnt/windows_dev/disk:/dev/disk/:ro
-      - /etc/machine-id:/etc/machine-id:ro
+#      - /etc/machine-id:/etc/machine-id:ro
     ports:
       - '8080:8080'
 
@@ -79,7 +81,7 @@ services:
     links:
       - prometheus:prometheus
     volumes:
-      - ./grafana/grafana_storage:/var/lib/grafana
+      # - ./grafana/grafana_storage:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     env_file:
       - ./grafana/config.monitoring
