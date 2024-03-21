@@ -1,0 +1,8 @@
+.idea/
+
+/venv
+
+.pytest_cache
+
+/grafana/grafana_storage
+/prometheus/prometheus_data
