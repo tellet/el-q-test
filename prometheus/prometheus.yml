@@ -2,7 +2,6 @@ global:
   scrape_interval:     120s # default 15s
   evaluation_interval: 120s # default 15s
 
-# A scrape configuration containing exactly one endpoint to scrape:
 scrape_configs:
   - job_name: 'prometheus'
 

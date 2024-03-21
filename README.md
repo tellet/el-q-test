@@ -24,7 +24,8 @@ Use a stack: docker + node-exporter + cadvisor + prometheus + grafana to monitor
 * Docker
 * Docker Compose
 
-Note that you'll need to download a snapshot from the list mentioned above. I have used Arxiv Titles.
+Note that you'll need to download a snapshot from the list mentioned above. I have used [Arxiv Titles](https://snapshots.qdrant.io/arxiv_titles-3083016565637815127-2023-05-29-13-56-22.snapshot) snapshot.
+I used "latest" tags for images for simplicity.
 
 ### Monitoring
 From project root run:

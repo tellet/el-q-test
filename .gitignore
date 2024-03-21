@@ -4,5 +4,6 @@
 
 .pytest_cache
 
-/grafana/storage
-/prometheus/storage
+qdrant.snapshot
+/grafana/grafana_storage
+/prometheus/prometheus_data

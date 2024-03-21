@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/storage:/prometheus
+      - ./prometheus/prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -39,10 +39,10 @@ services:
     image: prom/node-exporter
     container_name: monitoring_node_exporter
     volumes:
-#      - /proc:/host/proc:ro
-      - /mnt/windows_proc/:/host/proc:ro
-#      - /sys:/host/sys:ro
-      - /mnt/windows_sys/:/host/sys:ro
+      - /proc:/host/proc:ro
+#      - /mnt/windows_proc/:/host/proc:ro
+      - /sys:/host/sys:ro
+#      - /mnt/windows_sys/:/host/sys:ro
     restart: unless-stopped
     command:
       - '--path.procfs=/host/proc'
@@ -58,16 +58,14 @@ services:
     restart: unless-stopped
     privileged: true
     volumes:
-#      - /:/rootfs:ro
+      - /:/rootfs:ro
       - /var/run:/var/run:rw
-#      - /sys:/sys:ro
-      - /mnt/windows_sys/:/host/sys:ro
-#      - /var/lib/docker/:/var/lib/docker:ro
-      - /mnt/windows_docker/:/var/lib/docker:ro
-#      - /mnt/my-docker/version-pack-data/community/docker:/rootfs/var/lib/docker:ro
-      - /mnt/windows_docker/:/rootfs/var/lib/docker:ro
-#      - /dev/disk:/dev/disk/:ro
-      - /mnt/windows_dev/disk:/dev/disk/:ro
+      - /sys:/sys:ro
+#      - /mnt/windows_sys/:/host/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+#      - /mnt/windows_docker/:/var/lib/docker:ro
+      - /dev/disk:/dev/disk/:ro
+#      - /mnt/windows_dev/disk:/dev/disk/:ro
       - /etc/machine-id:/etc/machine-id:ro
     ports:
       - '8080:8080'
@@ -81,7 +79,7 @@ services:
     links:
       - prometheus:prometheus
     volumes:
-      - ./grafana/storage:/var/lib/grafana
+      - ./grafana/grafana_storage:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     env_file:
       - ./grafana/config.monitoring
