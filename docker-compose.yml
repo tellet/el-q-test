@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/prometheus_data:/prometheus
+      - ./prometheus/storage:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -81,7 +81,7 @@ services:
     links:
       - prometheus:prometheus
     volumes:
-      - ./grafana/grafana_storage:/var/lib/grafana
+      - ./grafana/storage:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     env_file:
       - ./grafana/config.monitoring
