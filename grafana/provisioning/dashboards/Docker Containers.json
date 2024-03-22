@@ -98,7 +98,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(rate(container_cpu_user_seconds_total[1m])) / count(node_cpu_seconds_total{mode=\"user\"}) * 100",
+          "expr": "sum(rate(container_cpu_user_seconds_total[5s])) / count(node_cpu_seconds_total{mode=\"user\"}) * 100",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
@@ -624,7 +624,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "scalar(count(container_memory_usage_bytes) > 0)",
+          "expr": "scalar(count(container_memory_usage_bytes{image!=\"\"}) > 0)",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "containers",
@@ -987,7 +987,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (rate(container_cpu_usage_seconds_total[1m])) / scalar(count(node_cpu_seconds_total{mode=\"user\"})) * 100",
+          "expr": "sum by (name) (rate(container_cpu_usage_seconds_total{image!=\"\",container_label_org_label_schema_group=\"\"}[5s])) / scalar(count(node_cpu_seconds_total{mode=\"user\"})) * 100",
           "format": "time_series",
           "intervalFactor": 10,
           "legendFormat": "{{ name }}",
@@ -1092,7 +1092,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (name)(container_memory_usage_bytes)",
+          "expr": "sum by (name)(container_memory_usage_bytes{image!=\"\",container_label_org_label_schema_group=\"\"})",
           "intervalFactor": 1,
           "legendFormat": "{{ name }}",
           "metric": "container_memory_usage",
@@ -1196,7 +1196,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (container_memory_cache)",
+          "expr": "sum by (name) (container_memory_cache{image!=\"\",container_label_org_label_schema_group=\"\"})",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "container_memory_cache",
@@ -1249,6 +1249,6 @@
   "timezone": "browser",
   "title": "Docker Containers",
   "uid": "IXXnvocmz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
