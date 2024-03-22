@@ -174,7 +174,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
+          "expr": "sum(rate(node_cpu_seconds_total{mode=\"idle\"}[5s])) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 2,
@@ -966,7 +966,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(rate(node_cpu_seconds_total[1m])) by (mode) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
+          "expr": "sum(rate(node_cpu_seconds_total[5s])) by (mode) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
           "format": "time_series",
           "intervalFactor": 10,
           "legendFormat": "{{ mode }}",
@@ -1281,7 +1281,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(irate(node_disk_read_bytes_total[1m]))",
+          "expr": "sum(irate(node_disk_read_bytes_total[5s]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1295,7 +1295,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(irate(node_disk_written_bytes_total[1m]))",
+          "expr": "sum(irate(node_disk_written_bytes_total[5s]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "written",
@@ -1308,7 +1308,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(irate(node_disk_io_time_seconds_total[1m]))",
+          "expr": "sum(irate(node_disk_io_time_seconds_total[5s]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "io time",
@@ -1411,7 +1411,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[1m])",
+          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[5s])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "In: {{ device }}",
@@ -1424,7 +1424,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m])",
+          "expr": "irate(node_network_transmit_bytes_total{device!=\"lo\"}[5s])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Out: {{ device }}",
@@ -1674,7 +1674,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(node_vmstat_pswpin[1m]) * 4096 or irate(node_vmstat_pswpin[5m]) * 4096",
+          "expr": "rate(node_vmstat_pswpin[5s]) * 4096 or irate(node_vmstat_pswpin[5m]) * 4096",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
@@ -1687,7 +1687,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(node_vmstat_pswpout[1m]) * 4096 or irate(node_vmstat_pswpout[5m]) * 4096",
+          "expr": "rate(node_vmstat_pswpout[5s]) * 4096 or irate(node_vmstat_pswpout[5m]) * 4096",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
